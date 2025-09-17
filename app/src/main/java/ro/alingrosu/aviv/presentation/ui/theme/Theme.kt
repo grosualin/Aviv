@@ -1,4 +1,4 @@
-package ro.alingrosu.aviv.presentation.theme
+package ro.alingrosu.aviv.presentation.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
