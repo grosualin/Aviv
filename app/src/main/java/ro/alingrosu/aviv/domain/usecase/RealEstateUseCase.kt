@@ -6,6 +6,6 @@ import javax.inject.Inject
 class RealEstateUseCase @Inject constructor(
     private val repository: RealEstateRepository
 ) {
-    fun getListings() = repository.getListings()
-    fun getListingDetail(id: Int) = repository.getListingDetail(id)
+    suspend fun getListings() = repository.getListings()
+    suspend fun getListingDetail(id: Int) = repository.getListingDetail(id)
 }

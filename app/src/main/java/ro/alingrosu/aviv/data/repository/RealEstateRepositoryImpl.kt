@@ -1,7 +1,6 @@
 package ro.alingrosu.aviv.data.repository
 
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.delay
 import ro.alingrosu.aviv.data.mapper.toDomain
 import ro.alingrosu.aviv.data.remote.service.RealEstateApi
 import ro.alingrosu.aviv.domain.model.RealEstate
@@ -12,14 +11,11 @@ class RealEstateRepositoryImpl @Inject constructor(
     private val api: RealEstateApi
 ) : RealEstateRepository {
 
-    override fun getListings(): Flow<List<RealEstate>> = flow {
-        val response = api.getListings().items.map { it.toDomain() }
-        emit(response)
+    override suspend fun getListings(): List<RealEstate> {
+        return api.getListings().items.map { it.toDomain() }
     }
 
-    override fun getListingDetail(id: Int): Flow<RealEstate> = flow {
-        val response = api.getListingDetail(id).toDomain()
-        emit(response)
+    override suspend fun getListingDetail(id: Int): RealEstate {
+        return api.getListingDetail(id).toDomain()
     }
-
 }

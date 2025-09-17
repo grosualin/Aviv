@@ -15,4 +15,7 @@ data class RealEstateUi(
     fun formattedPrice(): String {
         return "$price €"
     }
+    fun formattedArea(): String {
+        return "$area sqm"
+    }
 }
