@@ -2,15 +2,15 @@ package ro.alingrosu.aviv.presentation.ui.screens.detail
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBars
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -30,6 +30,7 @@ import ro.alingrosu.aviv.R
 import ro.alingrosu.aviv.presentation.ui.state.UiState
 import ro.alingrosu.aviv.presentation.ui.theme.Typography
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RealEstateDetailScreen(
     realEstateId: Int,
@@ -41,59 +42,69 @@ fun RealEstateDetailScreen(
 
     val state by viewModel.state.collectAsState()
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(WindowInsets.systemBars.asPaddingValues())
-    ) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(text = stringResource(R.string.detail_title)) }
+            )
+        },
+        modifier = Modifier.fillMaxSize()
+    ) { innerPadding ->
 
-        when (state) {
-            is UiState.Loading -> {
-                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    CircularProgressIndicator()
-                }
-            }
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        ) {
 
-            is UiState.Success -> {
-                val listing = (state as UiState.Success).data
-                Column(modifier = Modifier.padding(top = 16.dp)) {
-                    AsyncImage(
-                        model = ImageRequest.Builder(LocalContext.current)
-                            .data(listing.imageUrl)
-                            .crossfade(true)
-                            .placeholder(R.drawable.placeholder)
-                            .error(R.drawable.placeholder)
-                            .build(),
-                        contentDescription = stringResource(R.string.image_content_description),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(200.dp),
-                        contentScale = ContentScale.Crop
-                    )
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(16.dp)
-                    ) {
-                        Text(
-                            text = listing.propertyType,
-                            style = Typography.titleLarge,
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.fillMaxWidth()
-                        )
-                        Text(text = stringResource(R.string.city, listing.city))
-                        Text(text = stringResource(R.string.bedrooms, listing.bedrooms))
-                        Text(text = stringResource(R.string.rooms, listing.rooms))
-                        Text(text = stringResource(R.string.area, listing.area))
-                        Text(text = stringResource(R.string.price, listing.price))
-                        Text(text = stringResource(R.string.professional, listing.professional))
+            when (state) {
+                is UiState.Loading -> {
+                    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        CircularProgressIndicator()
                     }
                 }
-            }
 
-            is UiState.Error -> {
-                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text(text = (state as UiState.Error).message, color = Color.Red)
+                is UiState.Success -> {
+                    val listing = (state as UiState.Success).data
+                    Column(modifier = Modifier.padding(top = 16.dp)) {
+                        AsyncImage(
+                            model = ImageRequest.Builder(LocalContext.current)
+                                .data(listing.imageUrl)
+                                .crossfade(true)
+                                .placeholder(R.drawable.placeholder)
+                                .error(R.drawable.placeholder)
+                                .build(),
+                            contentDescription = stringResource(R.string.image_content_description),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(200.dp),
+                            contentScale = ContentScale.Crop
+                        )
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(16.dp)
+                        ) {
+                            Text(
+                                text = listing.propertyType,
+                                style = Typography.titleLarge,
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                            Text(text = stringResource(R.string.city, listing.city))
+                            Text(text = stringResource(R.string.bedrooms, listing.bedrooms))
+                            Text(text = stringResource(R.string.rooms, listing.rooms))
+                            Text(text = stringResource(R.string.area, listing.area))
+                            Text(text = stringResource(R.string.price, listing.price))
+                            Text(text = stringResource(R.string.professional, listing.professional))
+                        }
+                    }
+                }
+
+                is UiState.Error -> {
+                    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        Text(text = (state as UiState.Error).message, color = Color.Red)
+                    }
                 }
             }
         }

@@ -38,7 +38,7 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 retrofit-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "daggerHilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "daggerHilt" }
-hilt-viewModel = {module="androidx.hilt:hilt-navigation-compose", version.ref="daggerHiltViewModel"}
+hilt-viewModel = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "daggerHiltViewModel" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 
 [plugins]

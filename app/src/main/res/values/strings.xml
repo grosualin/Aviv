@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Aviv</string>
 
+    <string name="listing_title">Available properties</string>
     <string name="detail_title">Property details</string>
     <string name="bedrooms">Bedrooms: %1$d</string>
     <string name="rooms">Rooms: %1$d</string>

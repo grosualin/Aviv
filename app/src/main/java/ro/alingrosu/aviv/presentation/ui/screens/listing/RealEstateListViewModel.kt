@@ -20,18 +20,29 @@ class RealEstateListViewModel @Inject constructor(
     private val _state = MutableStateFlow<UiState<List<RealEstateUi>>>(UiState.Loading)
     val state: StateFlow<UiState<List<RealEstateUi>>> = _state
 
+    private val _isRefreshing = MutableStateFlow(false)
+    val isRefreshing: StateFlow<Boolean> = _isRefreshing
+
+    private var isFirstLoad = true
+
+
     init {
         loadListings()
     }
 
-    private fun loadListings() {
+    fun loadListings() {
         viewModelScope.launch {
-            _state.value = UiState.Loading
+            if (isFirstLoad)
+                _state.value = UiState.Loading
+            _isRefreshing.value = !isFirstLoad
             try {
                 val listings = realEstateUseCase.getListings()
                 _state.value = UiState.Success(listings.map { it.toUi() })
             } catch (e: Exception) {
                 _state.value = UiState.Error(e.localizedMessage ?: "Unknown error")
+            } finally {
+                _isRefreshing.value = false
+                isFirstLoad = false
             }
         }
     }
