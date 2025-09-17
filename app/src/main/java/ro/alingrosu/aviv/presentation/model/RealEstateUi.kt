@@ -6,11 +6,11 @@ data class RealEstateUi(
     val price: Double,
     val area: Double,
     val imageUrl: String,
-    val bedrooms: Int?,
-    val rooms: Int?,
+    val bedrooms: Int,
+    val rooms: Int,
     val professional: String,
     val propertyType: String,
-    val offerType: Int?
+    val offerType: Int
 ) {
     fun formattedPrice(): String {
         return "$price €"

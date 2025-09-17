@@ -6,13 +6,13 @@ import ro.alingrosu.aviv.presentation.model.RealEstateUi
 
 fun RealEstate.toUi() = RealEstateUi(
     id = id,
-    bedrooms = bedrooms,
+    bedrooms = bedrooms ?: 0,
     city = city,
     area = area,
     imageUrl = imageUrl ?: "",
     price = price,
     professional = professional ?: "",
     propertyType = propertyType ?: "",
-    offerType = offerType,
-    rooms = rooms
+    offerType = offerType ?: 0,
+    rooms = rooms ?: 0
 )

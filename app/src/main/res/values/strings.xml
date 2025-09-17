@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Aviv</string>
+
+    <string name="detail_title">Property details</string>
+    <string name="bedrooms">Bedrooms: %1$d</string>
+    <string name="rooms">Rooms: %1$d</string>
+    <string name="area">Area: %1$.1f m²</string>
+    <string name="price">Price: %.2f €</string>
+    <string name="professional">Professional: %1$s</string>
+    <string name="city">City: %1$s</string>
+    <string name="image_content_description">Listing Image</string>
 </resources>

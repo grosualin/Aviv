@@ -60,4 +60,5 @@ dependencies {
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.viewModel)
+    implementation(libs.coil.compose)
 }
