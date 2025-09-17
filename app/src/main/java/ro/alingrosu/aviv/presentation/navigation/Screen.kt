@@ -1,4 +1,4 @@
-package ro.alingrosu.aviv.presentation.ui.navigation
+package ro.alingrosu.aviv.presentation.navigation
 
 sealed class Screen(val route: String) {
     object Listings : Screen("listings")

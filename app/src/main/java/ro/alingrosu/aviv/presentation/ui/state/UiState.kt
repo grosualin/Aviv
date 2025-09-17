@@ -1,4 +1,4 @@
-package ro.alingrosu.aviv.presentation.state
+package ro.alingrosu.aviv.presentation.ui.state
 
 
 sealed class UiState<out T> {

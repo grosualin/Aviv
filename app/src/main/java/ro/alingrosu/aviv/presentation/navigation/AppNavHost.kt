@@ -1,4 +1,4 @@
-package ro.alingrosu.aviv.presentation.ui.navigation
+package ro.alingrosu.aviv.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
