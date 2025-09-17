@@ -1,4 +1,4 @@
-package ro.alingrosu.aviv.presentation.ui.theme
+package ro.alingrosu.aviv.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
