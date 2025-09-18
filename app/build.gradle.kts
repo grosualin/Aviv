@@ -61,4 +61,10 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.viewModel)
     implementation(libs.coil.compose)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.androidx.junit)
+    testImplementation(libs.androidx.espresso.core)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
 }

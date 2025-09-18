@@ -27,30 +27,29 @@ Technical assessment for Aviv
 The app follows Clean Architecture principles and the MVVM architecture, using Repository pattern.
 The app has the following structure and layers:
 
-- Presentation Layer : UI, ViewModels, Models, State (LiveData, RxJava), Custom Views
+- Presentation Layer : UI, ViewModels, Models, State (StateFlow, Coroutines)
     - Responsible for displaying data and handling user interactions.
     - Uses usecases to interact with data and maps domain model to ui models.
 - Domain Layer: UseCases, Interfaces, Business Models
     - Holds usecases and business models.
     - Responsible for business logic and data processing.
     - A usecase combines one or multiple repositories and performs a specific business operation by implementing business logic.
-    - Maps data models to domain models.
 - Data Layer: Remote (API services, DTOs), Mappers
     - One data source: remote apis
     - Responsible for fetching data.
-- Dependency Injection: Modules, Components
+    - Maps data layer models to domain layer models.
+- Dependency Injection Layer: Modules
     - Provides a mechanism for injecting dependencies into classes.
-    - Uses Dagger 3 for dependency injection.
-    - A module tells Dagger how to provide dependencies to other objects.
-    - A component tells Dagger which modules to use in order to create objects.
+    - Uses Hilt for dependency injection.
+    - A module tells Hilt how to provide dependencies to other objects.
 
 ## Tech Stack:
-- Kotlin 2.2+
+- Kotlin 2.2+ 
 - Material Design 3
-- Room (offline persistence)
-- RxJava3 (reactive data handling)
-- Dagger 3 (dependency injection)
-- Jetpack Navigation
+- Flow (reactive data handling)
+- Coroutines (asynchronous programming)
+- Hilt (dependency injection)
+- Jetpack Compose (UI framework)
 
 
 ## 👤 Author

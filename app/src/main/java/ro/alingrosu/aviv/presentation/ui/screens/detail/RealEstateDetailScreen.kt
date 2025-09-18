@@ -36,11 +36,11 @@ fun RealEstateDetailScreen(
     realEstateId: Int,
     viewModel: RealEstateDetailViewModel = hiltViewModel()
 ) {
+    val state by viewModel.state.collectAsState()
+
     LaunchedEffect(realEstateId) {
         viewModel.loadDetails(realEstateId)
     }
-
-    val state by viewModel.state.collectAsState()
 
     Scaffold(
         topBar = {
